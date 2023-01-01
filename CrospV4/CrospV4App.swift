@@ -15,3 +15,7 @@ struct CrospV4App: App {
         }
     }
 }
+
+func printhello() {
+    print("Hello")
+}

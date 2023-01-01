@@ -14,6 +14,9 @@
 		03FCC3722960D3680098E490 /* CrospV4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCC3712960D3680098E490 /* CrospV4Tests.swift */; };
 		03FCC37C2960D3680098E490 /* CrospV4UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCC37B2960D3680098E490 /* CrospV4UITests.swift */; };
 		03FCC37E2960D3680098E490 /* CrospV4UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCC37D2960D3680098E490 /* CrospV4UITestsLaunchTests.swift */; };
+		03FCC38B2960D9210098E490 /* HapticManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCC38A2960D9210098E490 /* HapticManagement.swift */; };
+		03FCC38D2962326E0098E490 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCC38C2962326E0098E490 /* AboutView.swift */; };
+		03FCC38F29624D240098E490 /* URLSesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCC38E29624D240098E490 /* URLSesh.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		03FCC3772960D3680098E490 /* CrospV4UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrospV4UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FCC37B2960D3680098E490 /* CrospV4UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrospV4UITests.swift; sourceTree = "<group>"; };
 		03FCC37D2960D3680098E490 /* CrospV4UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrospV4UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		03FCC38A2960D9210098E490 /* HapticManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HapticManagement.swift; path = CrospV4/HapticManagement.swift; sourceTree = "<group>"; };
+		03FCC38C2962326E0098E490 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		03FCC38E29624D240098E490 /* URLSesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSesh.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,8 @@
 		03FCC3542960D3660098E490 = {
 			isa = PBXGroup;
 			children = (
+				03FCC38C2962326E0098E490 /* AboutView.swift */,
+				03FCC38A2960D9210098E490 /* HapticManagement.swift */,
 				03FCC35F2960D3660098E490 /* CrospV4 */,
 				03FCC3702960D3680098E490 /* CrospV4Tests */,
 				03FCC37A2960D3680098E490 /* CrospV4UITests */,
@@ -96,6 +104,7 @@
 			children = (
 				03FCC3602960D3660098E490 /* CrospV4App.swift */,
 				03FCC3622960D3660098E490 /* ContentView.swift */,
+				03FCC38E29624D240098E490 /* URLSesh.swift */,
 				03FCC3642960D3680098E490 /* Assets.xcassets */,
 				03FCC3662960D3680098E490 /* Preview Content */,
 			);
@@ -257,6 +266,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03FCC38F29624D240098E490 /* URLSesh.swift in Sources */,
+				03FCC38D2962326E0098E490 /* AboutView.swift in Sources */,
+				03FCC38B2960D9210098E490 /* HapticManagement.swift in Sources */,
 				03FCC3632960D3660098E490 /* ContentView.swift in Sources */,
 				03FCC3612960D3660098E490 /* CrospV4App.swift in Sources */,
 			);
@@ -420,11 +432,12 @@
 				DEVELOPMENT_TEAM = 3H6XX85AYY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MacControl;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -432,9 +445,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.koshy.CrospV4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -449,11 +465,12 @@
 				DEVELOPMENT_TEAM = 3H6XX85AYY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MacControl;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,9 +478,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.koshy.CrospV4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
