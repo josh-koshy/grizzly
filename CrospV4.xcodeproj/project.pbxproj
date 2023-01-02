@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0332DAE32963495300D4535D /* EBGaramond-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0332DAE22963495300D4535D /* EBGaramond-Medium.ttf */; };
 		03FCC3612960D3660098E490 /* CrospV4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCC3602960D3660098E490 /* CrospV4App.swift */; };
 		03FCC3632960D3660098E490 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCC3622960D3660098E490 /* ContentView.swift */; };
 		03FCC3652960D3680098E490 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03FCC3642960D3680098E490 /* Assets.xcassets */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0332DAE22963495300D4535D /* EBGaramond-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond-Medium.ttf"; sourceTree = "<group>"; };
+		0332DAE429634A2B00D4535D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		03FCC35D2960D3660098E490 /* CrospV4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrospV4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FCC3602960D3660098E490 /* CrospV4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrospV4App.swift; sourceTree = "<group>"; };
 		03FCC3622960D3660098E490 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +80,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0332DAE12963493400D4535D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0332DAE22963495300D4535D /* EBGaramond-Medium.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		03FCC3542960D3660098E490 = {
 			isa = PBXGroup;
 			children = (
@@ -102,9 +113,11 @@
 		03FCC35F2960D3660098E490 /* CrospV4 */ = {
 			isa = PBXGroup;
 			children = (
+				0332DAE429634A2B00D4535D /* Info.plist */,
 				03FCC3602960D3660098E490 /* CrospV4App.swift */,
 				03FCC3622960D3660098E490 /* ContentView.swift */,
 				03FCC38E29624D240098E490 /* URLSesh.swift */,
+				0332DAE12963493400D4535D /* Fonts */,
 				03FCC3642960D3680098E490 /* Assets.xcassets */,
 				03FCC3662960D3680098E490 /* Preview Content */,
 			);
@@ -242,6 +255,7 @@
 			files = (
 				03FCC3682960D3680098E490 /* Preview Assets.xcassets in Resources */,
 				03FCC3652960D3680098E490 /* Assets.xcassets in Resources */,
+				0332DAE32963495300D4535D /* EBGaramond-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +446,7 @@
 				DEVELOPMENT_TEAM = 3H6XX85AYY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CrospV4/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MacControl;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -465,6 +480,7 @@
 				DEVELOPMENT_TEAM = 3H6XX85AYY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CrospV4/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MacControl;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -8,14 +8,12 @@
 import SwiftUI
 
 @main
+
 struct CrospV4App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            
         }
     }
-}
-
-func printhello() {
-    print("Hello")
 }
