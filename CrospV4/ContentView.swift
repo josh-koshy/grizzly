@@ -22,13 +22,13 @@ struct ContentView: View {
                     Button( action: {
                             counter += 1;
                             rigidHaptic();
-                            if ((counter % 20) == 0) {
+                            if ((counter % 5) == 0) {
                                 isShowingDatViewWhichIsViewNumber2 = true
                             }
                         
                     }) { // begin button label
                         ZStack(alignment: .leading) { // text and NavigationLink are within the ZStack
-                            Text("\(name) is a very interesting and talented individual").font(.custom("EBGaramond-Medium", size: 20.0)).fontWeight(.bold).foregroundColor(colorScheme == .dark ? Color.white : Color.black).multilineTextAlignment(.leading) // Custom Font used here
+                            Text("Connected to Josh's Macbook Pro through the Cloud").font(.custom("EBGaramond-Medium", size: 20.0)).fontWeight(.bold).foregroundColor(colorScheme == .dark ? Color.white : Color.black).multilineTextAlignment(.leading).lineLimit(nil).padding(.trailing, 20.0) // Custom Font used here
                             
                             NavigationLink(destination: AboutView(), isActive: $isShowingDatViewWhichIsViewNumber2) { }.opacity(0.0)
                             .buttonStyle(PlainButtonStyle()) // Removes the 'chevron' or arrow to the right of the button
@@ -38,7 +38,14 @@ struct ContentView: View {
                 
                 
                 
-                Section { Text("This number will update: " + String(counter)) }
+                Section { Button {
+                    sleepMac()
+                } label: {
+                    Text("Press Here to Sleep Josh's MacBook Pro")
+                        .foregroundColor(colorScheme == .dark ? Color.yellow : Color.red)
+                        .fontWeight(.bold)
+                }
+ }
 
             }.navigationTitle("💻 Mac Control, by Josh Koshy").navigationBarTitleDisplayMode(.inline)
         }
