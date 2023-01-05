@@ -10,16 +10,17 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State public var zz = ""
+    @State public var zz = "Disconnected..."
     @State var counter: Int = 0;
     @State var isShowingDatViewWhichIsViewNumber2: Bool = false
     @State private var name: String = "Rylie Meier"
     @Environment(\.colorScheme) var colorScheme // detect if dark mode or not (https://www.hackingwithswift.com/quick-start/swiftui/how-to-detect-dark-mode)
+    @State var authcode = "CVUWTTYW6LHTBKIVORA3TRLHIRF3UWPW"
     
     func sleepMac() {
         print("Function sleepMac called, response is: ")
         let session = URLSession.shared
-        let url = URL(string: "https://api.koshy.dev/sleep?totp=" + generateTOTP(secret: "CVUWTTYW6LHTBKIVORA3TRLHIRF3UWPW"))!
+        let url = URL(string: "https://api.koshy.dev/sleep?totp=" + generateTOTP(secret: authcode))!
         
         let task = session.dataTask(with: url) { data, response, error in
             
@@ -83,14 +84,15 @@ struct ContentView: View {
                 Section {
                     
                     Button {
-                        sleepMac()
+                        heavyHaptic(); sleepMac()
                     } label: {
                         Text("Press Here to Sleep Josh's MacBook Pro")
                             .foregroundColor(colorScheme == .dark ? Color.yellow : Color.red)
                             .fontWeight(.bold)
                     }
+                    TextField("Enter Authorization Code", text: $authcode).font(.system(size: 14.5))
+                    Text(zz).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                     
-                    Text(zz).foregroundColor(Color.white)
  }
 
             }.navigationTitle("💻 Mac Control, by Josh Koshy").navigationBarTitleDisplayMode(.inline)

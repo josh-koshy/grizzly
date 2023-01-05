@@ -32,11 +32,3 @@ func generateTOTP(secret: String) -> String {
     return ""
 }
 
-class ConnectedWrapper: ObservableObject {
-    @Published var sshStatus: String = "Disconnected";
-    
-    func changeIt(a: String) {
-        sshStatus = a;
-        self.objectWillChange.send()
-    }
-}
