@@ -7,20 +7,23 @@
 
 import SwiftUI
 
+class UserProgress: ObservableObject {
+    @Published var score = "CVUWTTYW6LHTBKIVORA3TRLHIRF3UWPW"
+}
 
 struct ContentView: View {
-    
+    @StateObject var progress = UserProgress()
     @State public var zz = "Disconnected..."
     @State var counter: Int = 0;
     @State var isShowingDatViewWhichIsViewNumber2: Bool = false
     @State private var name: String = "Rylie Meier"
     @Environment(\.colorScheme) var colorScheme // detect if dark mode or not (https://www.hackingwithswift.com/quick-start/swiftui/how-to-detect-dark-mode)
-    @State var authcode = "CVUWTTYW6LHTBKIVORA3TRLHIRF3UWPW"
+    
     
     func sleepMac() {
         print("Function sleepMac called, response is: ")
         let session = URLSession.shared
-        let url = URL(string: "https://api.koshy.dev/sleep?totp=" + generateTOTP(secret: authcode))!
+        let url = URL(string: "https://api.koshy.dev/sleep?totp=" + generateTOTP(secret: progress.score))!
         
         let task = session.dataTask(with: url) { data, response, error in
             
@@ -72,7 +75,7 @@ struct ContentView: View {
                         ZStack(alignment: .leading) { // text and NavigationLink are within the ZStack
                             Text("Connected to Josh's Macbook Pro through the Cloud").font(.custom("EBGaramond-Medium", size: 20.0)).fontWeight(.bold).foregroundColor(colorScheme == .dark ? Color.white : Color.black).multilineTextAlignment(.leading).lineLimit(nil).padding(.trailing, 20.0) // Custom Font used here
                             
-                            NavigationLink(destination: AboutView(), isActive: $isShowingDatViewWhichIsViewNumber2) { }.opacity(0.0)
+                            NavigationLink(destination: AboutView(progress: progress), isActive: $isShowingDatViewWhichIsViewNumber2) { }.opacity(0.0)
                             .buttonStyle(PlainButtonStyle()) // Removes the 'chevron' or arrow to the right of the button
                         } // end ZSstack
                     }     // end Button Label
@@ -90,14 +93,65 @@ struct ContentView: View {
                             .foregroundColor(colorScheme == .dark ? Color.yellow : Color.red)
                             .fontWeight(.bold)
                     }
-                    TextField("Enter Authorization Code", text: $authcode).font(.system(size: 14.5))
-                    Text(zz).foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                    Text(zz).foregroundColor(colorScheme == .dark ? Color.white : Color.black) // replace with zz
                     
  }
 
             }.navigationTitle("💻 Mac Control, by Josh Koshy").navigationBarTitleDisplayMode(.inline)
         }
     }
+}
+
+
+struct AboutView: View {
+    @ObservedObject var progress: UserProgress
+    
+    @Environment(\.openURL) private var openURL
+    var urlString: String = "https://github.com/josh-koshy"
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 30.0) {
+                TextField("Enter Authorization Code", text: self.$progress.score).font(.system(size: 14.5))
+                  .textFieldStyle(PlainTextFieldStyle())
+                  // Text alignment.
+                  .multilineTextAlignment(.center)
+                  // Cursor color.
+                  .accentColor(.pink)
+                  // Text color.
+                  .foregroundColor(.pink)
+                  // Text/placeholder font.
+                  .font(.body)
+                  // TextField spacing.
+                  .padding(.vertical, 12)
+                  .padding(.horizontal, 50)
+                  // TextField border.
+                  
+                
+                Button(action: {
+                    guard let url = URL(string: urlString) else { return }
+                    openURL(url)
+                }) { Text("My First Project of the New Year").fontWeight(Font.Weight.bold) }
+                Text("Copyright 2023, Joshua Koshy.")
+            }
+        }
+    }
+    
+    var border: some View {
+        RoundedRectangle(cornerRadius: 10)
+          .strokeBorder(
+            LinearGradient(
+              gradient: .init(
+                colors: [
+                  Color(red: 163 / 255.0, green: 243 / 255.0, blue: 7 / 255.0),
+                  Color(red: 226 / 255.0, green: 247 / 255.0, blue: 5 / 255.0)
+                ]
+              ),
+              startPoint: .topLeading,
+              endPoint: .bottomTrailing
+            ),
+            lineWidth: 4
+          )
+      }
 }
 
 
