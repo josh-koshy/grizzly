@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0332DAE32963495300D4535D /* EBGaramond-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0332DAE22963495300D4535D /* EBGaramond-Medium.ttf */; };
+		034A8EB329665F98006F09D7 /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A8EB229665F98006F09D7 /* TOTP.swift */; };
+		034A8EB629665FEC006F09D7 /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = 034A8EB529665FEC006F09D7 /* SwiftOTP */; };
 		03FCC3612960D3660098E490 /* CrospV4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCC3602960D3660098E490 /* CrospV4App.swift */; };
 		03FCC3632960D3660098E490 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCC3622960D3660098E490 /* ContentView.swift */; };
 		03FCC3652960D3680098E490 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03FCC3642960D3680098E490 /* Assets.xcassets */; };
@@ -40,6 +42,7 @@
 /* Begin PBXFileReference section */
 		0332DAE22963495300D4535D /* EBGaramond-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond-Medium.ttf"; sourceTree = "<group>"; };
 		0332DAE429634A2B00D4535D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		034A8EB229665F98006F09D7 /* TOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
 		03FCC35D2960D3660098E490 /* CrospV4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrospV4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FCC3602960D3660098E490 /* CrospV4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrospV4App.swift; sourceTree = "<group>"; };
 		03FCC3622960D3660098E490 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				034A8EB629665FEC006F09D7 /* SwiftOTP in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +119,7 @@
 				03FCC38C2962326E0098E490 /* AboutView.swift */,
 				03FCC38A2960D9210098E490 /* HapticManagement.swift */,
 				03FCC3602960D3660098E490 /* CrospV4App.swift */,
+				034A8EB229665F98006F09D7 /* TOTP.swift */,
 				03FCC3622960D3660098E490 /* ContentView.swift */,
 				03FCC38E29624D240098E490 /* URLSesh.swift */,
 				0332DAE12963493400D4535D /* Fonts */,
@@ -165,6 +170,9 @@
 			dependencies = (
 			);
 			name = CrospV4;
+			packageProductDependencies = (
+				034A8EB529665FEC006F09D7 /* SwiftOTP */,
+			);
 			productName = CrospV4;
 			productReference = 03FCC35D2960D3660098E490 /* CrospV4.app */;
 			productType = "com.apple.product-type.application";
@@ -237,6 +245,9 @@
 				Base,
 			);
 			mainGroup = 03FCC3542960D3660098E490;
+			packageReferences = (
+				034A8EB429665FEC006F09D7 /* XCRemoteSwiftPackageReference "SwiftOTP" */,
+			);
 			productRefGroup = 03FCC35E2960D3660098E490 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -284,6 +295,7 @@
 				03FCC38D2962326E0098E490 /* AboutView.swift in Sources */,
 				03FCC38B2960D9210098E490 /* HapticManagement.swift in Sources */,
 				03FCC3632960D3660098E490 /* ContentView.swift in Sources */,
+				034A8EB329665F98006F09D7 /* TOTP.swift in Sources */,
 				03FCC3612960D3660098E490 /* CrospV4App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -619,6 +631,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		034A8EB429665FEC006F09D7 /* XCRemoteSwiftPackageReference "SwiftOTP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lachlanbell/SwiftOTP";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		034A8EB529665FEC006F09D7 /* SwiftOTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 034A8EB429665FEC006F09D7 /* XCRemoteSwiftPackageReference "SwiftOTP" */;
+			productName = SwiftOTP;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 03FCC3552960D3660098E490 /* Project object */;
 }

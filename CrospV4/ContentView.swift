@@ -7,13 +7,54 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     
-    
+    @State public var zz = ""
     @State var counter: Int = 0;
     @State var isShowingDatViewWhichIsViewNumber2: Bool = false
     @State private var name: String = "Rylie Meier"
     @Environment(\.colorScheme) var colorScheme // detect if dark mode or not (https://www.hackingwithswift.com/quick-start/swiftui/how-to-detect-dark-mode)
+    
+    func sleepMac() {
+        print("Function sleepMac called, response is: ")
+        let session = URLSession.shared
+        let url = URL(string: "https://api.koshy.dev/sleep?totp=" + generateTOTP(secret: "CVUWTTYW6LHTBKIVORA3TRLHIRF3UWPW"))!
+        
+        let task = session.dataTask(with: url) { data, response, error in
+            
+            if error != nil || data == nil {
+                 print("Client error!")
+                 return
+            }
+            
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                print("Server error!")
+                return
+            }
+            
+            guard let mime = response.mimeType, mime == "application/json" else {
+                print("Wrong MIME type!")
+                return
+            }
+            
+            // https://www.hackingwithswift.com/example-code/system/how-to-parse-json-using-jsonserialization
+            do {
+                // make sure this JSON is in the format we expect
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    // try to read out a string array
+                    if let status = json["Status"] as? String {
+                        zz = status
+                        print(status)
+                    }
+                    
+                }
+            } catch let error as NSError {
+                print("Failed to load: \(error.localizedDescription)")
+            }
+        }
+        task.resume()
+    }
     
     var body: some View {
         NavigationView {
@@ -38,13 +79,18 @@ struct ContentView: View {
                 
                 
                 
-                Section { Button {
-                    sleepMac()
-                } label: {
-                    Text("Press Here to Sleep Josh's MacBook Pro")
-                        .foregroundColor(colorScheme == .dark ? Color.yellow : Color.red)
-                        .fontWeight(.bold)
-                }
+                
+                Section {
+                    
+                    Button {
+                        sleepMac()
+                    } label: {
+                        Text("Press Here to Sleep Josh's MacBook Pro")
+                            .foregroundColor(colorScheme == .dark ? Color.yellow : Color.red)
+                            .fontWeight(.bold)
+                    }
+                    
+                    Text(zz).foregroundColor(Color.white)
  }
 
             }.navigationTitle("💻 Mac Control, by Josh Koshy").navigationBarTitleDisplayMode(.inline)
@@ -57,8 +103,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-        AboutView()
-        
     }
 }
 
