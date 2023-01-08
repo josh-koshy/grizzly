@@ -6,18 +6,39 @@
 //
 
 import SwiftUI
+import WebSocket
+import Network
 
 class UserProgress: ObservableObject {
     @Published var score = "CVUWTTYW6LHTBKIVORA3TRLHIRF3UWPW"
+    @Published var ip = "192.168.10.5"
 }
 
+
+
 struct ContentView: View {
+
     @StateObject var progress = UserProgress()
     @State public var zz = "Disconnected..."
     @State var counter: Int = 0;
     @State var isShowingDatViewWhichIsViewNumber2: Bool = false
     @State private var name: String = "Rylie Meier"
+    @State var p: Float = 0.5
     @Environment(\.colorScheme) var colorScheme // detect if dark mode or not (https://www.hackingwithswift.com/quick-start/swiftui/how-to-detect-dark-mode)
+    func sliderChanged() async {
+        print("Slider value changed to \(p)")
+        let message = "Hello, world!"
+        do {
+            let socket = try await WebSocket.system(url: URL(string: "ws://" + progress.ip + ":8080")!)
+            try await socket.open()
+            try await socket.send(.text("\(p)"))
+        }
+        catch {
+            print(error)
+        }
+        
+    }
+    
     
     
     func sleepMac() {
@@ -60,11 +81,17 @@ struct ContentView: View {
         task.resume()
     }
     
+
+    
     var body: some View {
         NavigationView {
             Form {
                 Section {
                     Button( action: {
+                        Task {
+                            await sliderChanged()
+                            
+                        }
                             counter += 1;
                             rigidHaptic();
                             if ((counter % 5) == 0) {
@@ -95,12 +122,25 @@ struct ContentView: View {
                     }
                     Text(zz).foregroundColor(colorScheme == .dark ? Color.white : Color.black) // replace with zz
                     
+                    VStack{
+                           Slider(value: Binding(get: {
+                               self.p
+                           }, set: { (newVal) in
+                               Task {
+                                   self.p = newVal
+                                   await self.sliderChanged()
+                               }
+                           }))
+                           .padding(.all)
+                        }
+                    
+                    
  }
-
             }.navigationTitle("💻 Mac Control, by Josh Koshy").navigationBarTitleDisplayMode(.inline)
         }
     }
 }
+
 
 
 struct AboutView: View {
@@ -125,6 +165,19 @@ struct AboutView: View {
                   .padding(.vertical, 12)
                   .padding(.horizontal, 50)
                   // TextField border.
+                TextField("Enter Authorization Code", text: self.$progress.ip)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    // Text alignment.
+                    .multilineTextAlignment(.center)
+                    // Cursor color.
+                    .accentColor(.pink)
+                    // Text color.
+                    .foregroundColor(.pink)
+                    // Text/placeholder font.
+                    .font(.body)
+                    // TextField spacing.
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 50)
                   
                 
                 Button(action: {
@@ -135,23 +188,6 @@ struct AboutView: View {
             }
         }
     }
-    
-    var border: some View {
-        RoundedRectangle(cornerRadius: 10)
-          .strokeBorder(
-            LinearGradient(
-              gradient: .init(
-                colors: [
-                  Color(red: 163 / 255.0, green: 243 / 255.0, blue: 7 / 255.0),
-                  Color(red: 226 / 255.0, green: 247 / 255.0, blue: 5 / 255.0)
-                ]
-              ),
-              startPoint: .topLeading,
-              endPoint: .bottomTrailing
-            ),
-            lineWidth: 4
-          )
-      }
 }
 
 
@@ -161,6 +197,13 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+struct AboutView_Previews: PreviewProvider {
+    static var previews: some View {
+        AboutView(progress: ContentView().progress)
+    }
+}
+
 
 
 

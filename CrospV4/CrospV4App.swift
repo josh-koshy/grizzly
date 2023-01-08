@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftOTP
+import NWWebSocket
 
 @main
 
@@ -32,3 +33,8 @@ func generateTOTP(secret: String) -> String {
     return ""
 }
 
+
+
+
+
+// Use the WebSocket…
