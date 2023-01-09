@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0332DAE32963495300D4535D /* EBGaramond-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0332DAE22963495300D4535D /* EBGaramond-Medium.ttf */; };
-		0347B4AF296B613D008DBE9D /* NWWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 0347B4AE296B613D008DBE9D /* NWWebSocket */; };
 		0347B4B2296B6614008DBE9D /* WebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 0347B4B1296B6614008DBE9D /* WebSocket */; };
 		034A8EB329665F98006F09D7 /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034A8EB229665F98006F09D7 /* TOTP.swift */; };
 		034A8EB629665FEC006F09D7 /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = 034A8EB529665FEC006F09D7 /* SwiftOTP */; };
 		0388241C2968FC6F0012FB5E /* CoreStore in Frameworks */ = {isa = PBXBuildFile; productRef = 0388241B2968FC6F0012FB5E /* CoreStore */; };
+		03F8B08F296BE8580035E52E /* LicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F8B08E296BE8580035E52E /* LicenseView.swift */; };
 		03FCC3612960D3660098E490 /* CrospV4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCC3602960D3660098E490 /* CrospV4App.swift */; };
 		03FCC3632960D3660098E490 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCC3622960D3660098E490 /* ContentView.swift */; };
 		03FCC3652960D3680098E490 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03FCC3642960D3680098E490 /* Assets.xcassets */; };
@@ -46,6 +46,7 @@
 		0332DAE22963495300D4535D /* EBGaramond-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond-Medium.ttf"; sourceTree = "<group>"; };
 		0332DAE429634A2B00D4535D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		034A8EB229665F98006F09D7 /* TOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
+		03F8B08E296BE8580035E52E /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
 		03FCC35D2960D3660098E490 /* CrospV4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrospV4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FCC3602960D3660098E490 /* CrospV4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrospV4App.swift; sourceTree = "<group>"; };
 		03FCC3622960D3660098E490 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,7 +70,6 @@
 				0347B4B2296B6614008DBE9D /* WebSocket in Frameworks */,
 				034A8EB629665FEC006F09D7 /* SwiftOTP in Frameworks */,
 				0388241C2968FC6F0012FB5E /* CoreStore in Frameworks */,
-				0347B4AF296B613D008DBE9D /* NWWebSocket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +127,7 @@
 				03FCC3602960D3660098E490 /* CrospV4App.swift */,
 				034A8EB229665F98006F09D7 /* TOTP.swift */,
 				03FCC3622960D3660098E490 /* ContentView.swift */,
+				03F8B08E296BE8580035E52E /* LicenseView.swift */,
 				03FCC38E29624D240098E490 /* URLSesh.swift */,
 				0332DAE12963493400D4535D /* Fonts */,
 				03FCC3642960D3680098E490 /* Assets.xcassets */,
@@ -179,7 +180,6 @@
 			packageProductDependencies = (
 				034A8EB529665FEC006F09D7 /* SwiftOTP */,
 				0388241B2968FC6F0012FB5E /* CoreStore */,
-				0347B4AE296B613D008DBE9D /* NWWebSocket */,
 				0347B4B1296B6614008DBE9D /* WebSocket */,
 			);
 			productName = CrospV4;
@@ -306,6 +306,7 @@
 				03FCC38F29624D240098E490 /* URLSesh.swift in Sources */,
 				03FCC38D2962326E0098E490 /* AboutView.swift in Sources */,
 				03FCC38B2960D9210098E490 /* HapticManagement.swift in Sources */,
+				03F8B08F296BE8580035E52E /* LicenseView.swift in Sources */,
 				03FCC3632960D3660098E490 /* ContentView.swift in Sources */,
 				034A8EB329665F98006F09D7 /* TOTP.swift in Sources */,
 				03FCC3612960D3660098E490 /* CrospV4App.swift in Sources */,
@@ -680,11 +681,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0347B4AE296B613D008DBE9D /* NWWebSocket */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0347B4AD296B613D008DBE9D /* XCRemoteSwiftPackageReference "NWWebSocket" */;
-			productName = NWWebSocket;
-		};
 		0347B4B1296B6614008DBE9D /* WebSocket */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0347B4B0296B6614008DBE9D /* XCRemoteSwiftPackageReference "websocket-apple" */;

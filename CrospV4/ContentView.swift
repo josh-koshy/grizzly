@@ -16,6 +16,7 @@ class UserProgress: ObservableObject {
 
 
 
+
 struct ContentView: View {
 
     @StateObject var progress = UserProgress()
@@ -25,16 +26,36 @@ struct ContentView: View {
     @State private var name: String = "Rylie Meier"
     @State var p: Float = 0.5
     @Environment(\.colorScheme) var colorScheme // detect if dark mode or not (https://www.hackingwithswift.com/quick-start/swiftui/how-to-detect-dark-mode)
-    func sliderChanged() async {
-        print("Slider value changed to \(p)")
-        let message = "Hello, world!"
+    @State var socket: WebSocket = WebSocket.init()
+    @State var socketOpen: Bool = false;
+    
+    
+    
+    func appLaunched() async {
+        print("appLaunched called")
         do {
-            let socket = try await WebSocket.system(url: URL(string: "ws://" + progress.ip + ":8080")!)
+            socket = try await WebSocket.system(url: URL(string: "ws://" + progress.ip + ":8080")!)
             try await socket.open()
-            try await socket.send(.text("\(p)"))
+            socketOpen = true;
         }
         catch {
             print(error)
+        }
+    }
+    
+    
+    func sliderChanged() async {
+        print("Slider value changed to \(p)")
+        if socketOpen {
+            do {
+                try await socket.send(.text("\(round(1000 * p)/1000)"))
+            }
+            catch {
+                print(error)
+            }
+        }
+        else {
+            await appLaunched();
         }
         
     }
@@ -88,10 +109,6 @@ struct ContentView: View {
             Form {
                 Section {
                     Button( action: {
-                        Task {
-                            await sliderChanged()
-                            
-                        }
                             counter += 1;
                             rigidHaptic();
                             if ((counter % 5) == 0) {
@@ -145,11 +162,10 @@ struct ContentView: View {
 
 struct AboutView: View {
     @ObservedObject var progress: UserProgress
-    
+    @State var licenseViewVisible: Bool = false
     @Environment(\.openURL) private var openURL
     var urlString: String = "https://github.com/josh-koshy"
     var body: some View {
-        NavigationView {
             VStack(spacing: 30.0) {
                 TextField("Enter Authorization Code", text: self.$progress.score).font(.system(size: 14.5))
                   .textFieldStyle(PlainTextFieldStyle())
@@ -162,7 +178,7 @@ struct AboutView: View {
                   // Text/placeholder font.
                   .font(.body)
                   // TextField spacing.
-                  .padding(.vertical, 12)
+                  .padding(.vertical, 0)
                   .padding(.horizontal, 50)
                   // TextField border.
                 TextField("Enter Authorization Code", text: self.$progress.ip)
@@ -176,19 +192,31 @@ struct AboutView: View {
                     // Text/placeholder font.
                     .font(.body)
                     // TextField spacing.
-                    .padding(.vertical, 12)
+                    .padding(.vertical, 0)
                     .padding(.horizontal, 50)
                   
+                HStack {
+                    Button(action: {
+                        guard let url = URL(string: urlString) else { return }
+                        openURL(url)
+                    }) { Text("First Project of 2023").fontWeight(Font.Weight.bold) }
+                        .padding()
+                    
+                    
+                    NavigationLink(destination: LicenseView(), isActive: $licenseViewVisible) { Text("Licenses").fontWeight(Font.Weight.bold) }
+                        .padding()
+                    
+                }
                 
-                Button(action: {
-                    guard let url = URL(string: urlString) else { return }
-                    openURL(url)
-                }) { Text("My First Project of the New Year").fontWeight(Font.Weight.bold) }
+                
+                
                 Text("Copyright 2023, Joshua Koshy.")
             }
-        }
     }
 }
+
+
+
 
 
 
@@ -203,6 +231,8 @@ struct AboutView_Previews: PreviewProvider {
         AboutView(progress: ContentView().progress)
     }
 }
+
+
 
 
 
